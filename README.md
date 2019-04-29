@@ -293,3 +293,85 @@ In this part, a small Angular front-end is created using the Angular Command Lin
 
 ## Add Material Desigm
 
+    1. create branch dev
+
+        ```
+        git checkout -b dev
+        ```
+
+    1. Previews
+        - [Indigo Pink(https://material.angular.io?theme=indigo-pink)
+        - [Deep Purple Amber](https://material.angular.io?theme=deeppurple-amber)
+        - [Pink Blue Grey](https://material.angular.io?theme=pink-bluegrey)
+        - [Purple Green](https://material.angular.io?theme=purple-green)
+
+    1. Add Material
+
+        ```
+        cd client
+        ng add @angular/material
+        ```
+
+    1. Install packages using npm
+
+        ```
+        npm install --save @angular/material @angular/cdk @angular/animations 
+        npm install --save hammerjs
+        ```
+
+    1. Add BrowserAnimationsModule to app.module.ts
+
+        ```
+        import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+        @NgModule({
+            ...
+            imports: [BrowserAnimationsModule],
+            ...
+        })    
+        ```
+
+    1. Add a Theme to styles.css:
+
+        ```
+        @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+        ```
+
+    1. Add Material Design Icons to index.html
+
+        ```
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        ```
+
+## Add a Material Design Components Module
+
+    Create a module to include all the different modules from Matrial Design Components that will be used. 
+
+    1. Add more packages
+
+        ```
+        npm install -save moment
+        npm install -save @angular/material-moment-adapter
+        ```
+
+    1. Create a Material Module
+
+        ```
+        ng generate module mdc
+        ```
+
+    1. Add reference to client\src\app\app.module.ts
+
+        ```
+        imports: [
+            ...,
+            MdcModule
+        ],
+        ```
+
+## Style the Courses Component using Material Design Components   
+
+    ```
+    
+    ```
+

@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoursesModule } from './courses/courses.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MdcModule } from './mdc/mdc.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { CoursesModule } from './courses/courses.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MdcModule
   ],
   providers: [],
   bootstrap: [AppComponent]
