@@ -441,3 +441,51 @@ In this part, a small Angular front-end is created using the Angular Command Lin
     }
     ```
     
+## Add Mongodb running inside a Docker Container
+
+    1. docker-compose.yml
+    
+        ```
+        version: "3.1"
+
+        services:
+
+        mongodb:
+            image: bitnami/mongodb:latest
+            ports:
+            - 27017:27017
+            environment:
+            - ALLOW_EMPTY_PASSWORD=yes
+            volumes:
+            - mongodb_data:/bitnami
+            - ./transfer:/home/transfer
+
+        mongo-express:
+            image: mongo-express
+            restart: always
+            ports:
+            - 8081:8081
+            environment:
+            - ME_CONFIG_OPTIONS_EDITORTHEME=ambiance
+            - ME_CONFIG_MONGODB_SERVER=mongodb
+            - ME_CONFIG_MONGODB_PORT=27017
+            - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
+            links:
+            - mongodb
+        
+        volumes:  
+        mongodb_data:
+
+        ```
+
+    1. docker-compose build
+
+    1. docker-compose up -d
+
+    1. [Mongo Express](http://localhost/8081)
+
+![Mongo Express](images/mongo-express.png)
+
+## References
+
+    References go here
