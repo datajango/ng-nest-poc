@@ -297,195 +297,581 @@ In this part, a small Angular front-end is created using the Angular Command Lin
 
 ## Add Material Desigm
 
-    1. create branch dev
+1. create branch dev
 
-        ```
-        git checkout -b dev
-        ```
+    ```
+    git checkout -b dev
+    ```
 
-    1. Previews
-        - [Indigo Pink(https://material.angular.io?theme=indigo-pink)
-        - [Deep Purple Amber](https://material.angular.io?theme=deeppurple-amber)
-        - [Pink Blue Grey](https://material.angular.io?theme=pink-bluegrey)
-        - [Purple Green](https://material.angular.io?theme=purple-green)
+1. Previews
+    - [Indigo Pink(https://material.angular.io?theme=indigo-pink)
+    - [Deep Purple Amber](https://material.angular.io?theme=deeppurple-amber)
+    - [Pink Blue Grey](https://material.angular.io?theme=pink-bluegrey)
+    - [Purple Green](https://material.angular.io?theme=purple-green)
 
-    1. Add Material
+1. Add Material
 
-        ```
-        cd client
-        ng add @angular/material
-        ```
+    ```
+    cd client
+    ng add @angular/material
+    ```
 
-    1. Install packages using npm
+1. Install packages using npm
 
-        ```
-        npm install --save @angular/material @angular/cdk @angular/animations 
-        npm install --save hammerjs
-        ```
+    ```
+    npm install --save @angular/material @angular/cdk @angular/animations 
+    npm install --save hammerjs
+    ```
 
-    1. Add BrowserAnimationsModule to app.module.ts
+1. Add BrowserAnimationsModule to app.module.ts
 
-        ```
-        import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+    ```
+    import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-        @NgModule({
-            ...
-            imports: [BrowserAnimationsModule],
-            ...
-        })    
-        ```
+    @NgModule({
+        ...
+        imports: [BrowserAnimationsModule],
+        ...
+    })    
+    ```
 
-    1. Add a Theme to styles.css:
+1. Add a Theme to styles.css:
 
-        ```
-        @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-        ```
+    ```
+    @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+    ```
 
-    1. Add Material Design Icons to index.html
+1. Add Material Design Icons to index.html
 
-        ```
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        ```
+    ```
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    ```
 
 ## Add a Material Design Components Module
 
-    Create a module to include all the different modules from Matrial Design Components that will be used. 
+Create a module to include all the different modules from Matrial Design Components that will be used. 
 
-    1. Add more packages
+1. Add more packages
 
-        ```
-        npm install -save moment
-        npm install -save @angular/material-moment-adapter
-        ```
+    ```
+    npm install -save moment
+    npm install -save @angular/material-moment-adapter
+    ```
 
-    1. Create a Material Module
+1. Create a Material Module
 
-        ```
-        ng generate module mdc
-        ```
+    ```
+    ng generate module mdc
+    ```
 
-    1. Add reference to client\src\app\app.module.ts
+1. Add reference to client\src\app\app.module.ts
 
-        ```
-        imports: [
-            ...,
-            MdcModule
-        ],
-        ```
+    ```
+    imports: [
+        ...,
+        MdcModule
+    ],
+    ```
 
 ## Style the Courses Component using Material Design Components   
 
 ![Courses in a Material Design Component Card](images/courses-card.png)
 
-    1. client\src\app\courses\components\courses\courses.component.html
-
-        ```
-        <div class="container">
-            <h1>Courses</h1>
-
-            <div
-                *ngFor="let course of courses"
-                class="courses-container"
-            >
-                <mat-card class="example-card">
-                    <mat-card-header>
-                        <div
-                            mat-card-avatar
-                            class="example-header-image"
-                        ></div>
-                        <mat-card-title>{{course.title}}</mat-card-title>
-                        <mat-card-subtitle>{{course.author}}</mat-card-subtitle>
-                        <mat-card-subtitle>{{course.length}}</mat-card-subtitle>
-                    </mat-card-header>
-                    <img
-                        mat-card-image
-                        src="http://lorempixel.com/400/200/{{course.category}}"
-                        alt="Random Image"
-                    >
-                    <mat-card-content>
-                        <p>{{course.description}}</p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <button mat-mini-fab>
-                            <mat-icon>favorite</mat-icon>
-                        </button>
-                        <button mat-button>LIKE</button>
-                        <button mat-mini-fab>
-                            <mat-icon>send</mat-icon>
-                        </button>
-                        <button mat-button>SHARE</button>
-                    </mat-card-actions>
-                </mat-card>
-            </div>
-        </div>    
-        ```
-
-    1. client\src\app\courses\components\courses\courses.component.scss
+1. client\src\app\courses\components\courses\courses.component.html
 
     ```
-    .container {
-        margin: 30px;
-    }
+    <div class="container">
+        <h1>Courses</h1>
 
-    .courses-container {
-        padding: 20px;
-    }
-
-    .example-card {
-    max-width: 400px;
-    }
-
-    .example-header-image {
-    background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
-    background-size: cover;
-    }
+        <div
+            *ngFor="let course of courses"
+            class="courses-container"
+        >
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div
+                        mat-card-avatar
+                        class="example-header-image"
+                    ></div>
+                    <mat-card-title>{{course.title}}</mat-card-title>
+                    <mat-card-subtitle>{{course.author}}</mat-card-subtitle>
+                    <mat-card-subtitle>{{course.length}}</mat-card-subtitle>
+                </mat-card-header>
+                <img
+                    mat-card-image
+                    src="http://lorempixel.com/400/200/{{course.category}}"
+                    alt="Random Image"
+                >
+                <mat-card-content>
+                    <p>{{course.description}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-mini-fab>
+                        <mat-icon>favorite</mat-icon>
+                    </button>
+                    <button mat-button>LIKE</button>
+                    <button mat-mini-fab>
+                        <mat-icon>send</mat-icon>
+                    </button>
+                    <button mat-button>SHARE</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>    
     ```
+
+1. client\src\app\courses\components\courses\courses.component.scss
+
+```
+.container {
+    margin: 30px;
+}
+
+.courses-container {
+    padding: 20px;
+}
+
+.example-card {
+max-width: 400px;
+}
+
+.example-header-image {
+background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+background-size: cover;
+}
+```
     
 ## Add Mongodb running inside a Docker Container
 
-    1. docker-compose.yml
+1. docker-compose.yml
+
+    ```
+    version: "3.1"
+
+    services:
+
+    mongodb:
+        image: bitnami/mongodb:latest
+        ports:
+        - 27017:27017
+        environment:
+        - ALLOW_EMPTY_PASSWORD=yes
+        volumes:
+        - mongodb_data:/bitnami
+        - ./transfer:/home/transfer
+
+    mongo-express:
+        image: mongo-express
+        restart: always
+        ports:
+        - 8081:8081
+        environment:
+        - ME_CONFIG_OPTIONS_EDITORTHEME=ambiance
+        - ME_CONFIG_MONGODB_SERVER=mongodb
+        - ME_CONFIG_MONGODB_PORT=27017
+        - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
+        links:
+        - mongodb
     
-        ```
-        version: "3.1"
+    volumes:  
+    mongodb_data:
 
-        services:
+    ```
 
-        mongodb:
-            image: bitnami/mongodb:latest
-            ports:
-            - 27017:27017
-            environment:
-            - ALLOW_EMPTY_PASSWORD=yes
-            volumes:
-            - mongodb_data:/bitnami
-            - ./transfer:/home/transfer
+1. docker-compose build
 
-        mongo-express:
-            image: mongo-express
-            restart: always
-            ports:
-            - 8081:8081
-            environment:
-            - ME_CONFIG_OPTIONS_EDITORTHEME=ambiance
-            - ME_CONFIG_MONGODB_SERVER=mongodb
-            - ME_CONFIG_MONGODB_PORT=27017
-            - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
-            links:
-            - mongodb
-        
-        volumes:  
-        mongodb_data:
+1. docker-compose up -d
 
-        ```
-
-    1. docker-compose build
-
-    1. docker-compose up -d
-
-    1. [Mongo Express](http://localhost/8081)
+1. [Mongo Express](http://localhost/8081)
 
 ![Mongo Express](images/mongo-express.png)
+
+
+## Setup Server Interactive Debugging
+
+1. create dist folder
+
+    ```
+    npm run build
+    ```
+
+1. npm run debug:nodemon
+
+## Adding Mongodb to NetsJS server
+
+1. Install packages
+
+    ```
+    npm install --save @nestjs/mongoose mongoose        
+    npm install --save @nestjs/swagger
+    npm install --save-dev @types/mongoose
+    ```
+
+1. create a new nest js module for courses
+
+    ```
+    nest generate module courses
+    ```
+
+    ```
+    import { Module } from '@nestjs/common';
+    import { CoursesController } from './courses.controller';
+    import { CoursesService } from './courses.service';
+    import { coursesProviders } from './courses.providers';
+    import { DatabaseModule } from '../database/database.module';
+    import { MongooseModule } from '@nestjs/mongoose';
+    import { CourseSchema } from '../courses/courses.schema';
+
+    @Module({
+        imports: [MongooseModule.forFeature([{ name: 'Course', schema: CourseSchema }])],
+        controllers: [CoursesController],
+        providers: [CoursesService],
+        exports: [CoursesService, MongooseModule.forFeature([{ name: 'Course', schema: CourseSchema }])],
+    })
+    export class CoursesModule { }
+    ```
+
+1. add server\src\courses\courses.schema.ts
+
+    ```
+    import * as mongoose from 'mongoose';
+
+    export const CourseSchema = new mongoose.Schema({    
+        title: {
+            type: String,
+            required: true
+        },    
+        author: {
+            type: String,
+            required: true,
+        },
+        length: {
+            type: String,
+            required: false,
+        },
+        category: {
+            type: String,
+            required: false,
+        },
+        description: {
+            type: String,
+            required: true,
+        }
+    });
+    ```
+
+1. mkdir server\src\courses\dto
+
+1. add server\src\courses\dto\create-course.dto.ts
+
+    ```
+    import { ApiModelProperty } from '@nestjs/swagger';
+
+    export class CreateCourseDto {
+        @ApiModelProperty()
+        readonly id: string;
+
+        @ApiModelProperty()
+        readonly title: string;
+
+        @ApiModelProperty()
+        readonly description: string;
+
+        @ApiModelProperty()
+        readonly author: string;
+
+        @ApiModelProperty()
+        readonly length: string;
+
+        @ApiModelProperty()
+        readonly category: string;
+    }
+    ```    
+
+1. add server\src\courses\dto\update-course.dto.ts
+
+    ```
+    import { ApiModelProperty } from '@nestjs/swagger';
+
+    export class UpdateCourseDto {
+
+        @ApiModelProperty()
+        readonly title: string;
+
+        @ApiModelProperty()
+        readonly description: string;
+
+        @ApiModelProperty()
+        readonly author: string;
+
+        @ApiModelProperty()
+        readonly length: string;
+
+        @ApiModelProperty()
+        readonly category: string;
+    }
+    ```
+
+1. add server\src\courses\interfaces\course.interface.ts
+
+    ```
+    import { Document } from 'mongoose';
+
+    export interface Course extends Document {
+        readonly id: string;
+        readonly title: string;
+        readonly description: string;
+        readonly author: string;
+        readonly length: string;
+        readonly category: string;    
+    }        
+    ```
+
+1. changes to server\src\courses\courses.controller.ts
+
+    ```
+
+    import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+
+    import { CoursesService } from './courses.service';
+    import { Course as CourseInterface, Course } from './interfaces/course.interface';
+    import { ErrorMsg } from '../common/ErrorMsg';
+    import { SuccessMsg } from '../common/SuccessMsg';
+    import { CreateCourseDto } from './dto/create-course.dto';
+    import { UpdateCourseDto } from './dto/update-course.dto';
+
+    @Controller('courses')
+    export class CoursesController {
+
+        constructor(private readonly webService: CoursesService) {}
+
+        @Post()
+        async create(@Body() createCourseDto: CreateCourseDto): Promise<Course | ErrorMsg> {
+            return this.webService.create(createCourseDto);
+        }
+
+        @Get()
+        async findAll(): Promise<CourseInterface[]| ErrorMsg> {        
+            return this.webService.findAll();
+        }
+        
+        @Get(':id')
+        async findById(@Param('id') id: string): Promise<CourseInterface | ErrorMsg> {
+        return this.webService.findById(id);
+        }
+    
+        @Delete()
+        async deleteAll(): Promise<SuccessMsg | ErrorMsg> {
+        return this.webService.deleteAll();
+        }
+    
+        @Delete(':id')
+        async findByIdAndDelete(@Param('id') id: string): Promise<SuccessMsg | ErrorMsg> {
+        return this.webService.findByIdAndDelete(id);
+        }
+    
+        @Put(':id')
+        async findByIdAndUpdate(@Param('id') id: string, @Body() data: UpdateCourseDto): Promise<CourseInterface | ErrorMsg> {
+        return this.webService.findByIdAndUpdate(id, data);
+        }
+    }
+    ```
+
+1. changes to server\src\courses\courses.service.ts
+
+```
+import { Injectable, Inject } from '@nestjs/common';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { Course } from './interfaces/course.interface';
+import { COURSE_MODEL } from '../constants';
+import { ErrorMsg } from 'src/common/ErrorMsg';
+import { SuccessMsg } from 'src/common/SuccessMsg';
+import { CreateCourseDto } from './dto/create-course.dto';
+import { UpdateCourseDto } from './dto/update-course.dto';
+
+
+@Injectable()
+export class CoursesService {
+
+    constructor(@InjectModel('Course') private readonly courseModel: Model<Course>) { }
+
+    async create(createCourseDto: CreateCourseDto): Promise<Course | ErrorMsg> {
+        //let _id: number = new Types.ObjectId();
+        console.log('create', createCourseDto);
+
+        try {
+            const createdCourse = new this.courseModel(createCourseDto);
+
+            console.log('New Course', createdCourse);
+
+
+            return await createdCourse.save();
+        } catch (err) {
+            return { msg: err };
+        }
+    }
+
+    async findAll(): Promise<Course[] | ErrorMsg> {
+        try {
+            return await this.courseModel.find().exec();
+        } catch (err) {
+            return { msg: err };
+        }
+    }
+
+    // this method retrieves only one entry, by entry ID
+    async findById(id: string): Promise<Course | ErrorMsg> {
+
+        console.log(`findById ${id}`);
+
+        try {
+            let query: any = await this.courseModel.findById(id).exec();
+            return query;
+        } catch (err) {
+            return { msg: err };
+        }
+    }
+
+    async deleteAll(): Promise<SuccessMsg | ErrorMsg> {
+        try {
+            let results = await this.courseModel.deleteMany({}).exec();
+            console.log('deleteAll:', results);
+            //return await this.courseModel.find().exec();
+            return { msg: 'Success' };
+        } catch (err) {
+            return { msg: err };
+        }
+    }
+
+    async findByIdAndDelete(id: string): Promise<SuccessMsg | ErrorMsg> {
+        try {
+            let results = await this.courseModel.findByIdAndDelete(id).exec();
+            console.log('findByIdAndDelete:', results);
+            return { msg: 'Success' };
+        } catch (err) {
+            return { msg: err };
+        }
+    }
+
+    async findByIdAndUpdate(id: string, data: UpdateCourseDto): Promise<Course | ErrorMsg> {
+        try {
+            return await this.courseModel.findByIdAndUpdate(id, data).exec();
+        } catch (err) {
+            return { msg: err };
+        }
+    }
+}
+```
+
+1. server\src\constants.ts
+
+    ```
+    export const DATABASE_CONNECTION = 'MongoDb';
+    export const COURSE_MODEL = 'CourseModel';
+    ```
+
+1. That was alot of "boiler plate".
+
+    I probably made a mistake along the way, but the code works in the git repo.
+
+## Interactive Debugging
+
+1. create .vscode configs
+    1. launch.json
+    1. settining.json
+    1. tasks.json
+1. cd server
+1. add to package.json scripts
+    ```    
+    "postinstall": "tsc -p tsconfig.build.json",
+    "watch": "tsc -w -p tsconfig.build.json",
+    "debug:nodemon": "nodemon --inspect=0.0.0.0:9229 --nolazy --legacy-watch --watch ./dist ./dist/main.js",   
+    "postinstall:err": "tsc -p ./src",      
+    "watch:docker": "tsc -w -p tsconfig.build.json",    
+    "debug:node": "node --inspect=0.0.0.0:9229 ./dist/main.js",
+    ```
+1. Exclude target output directoru 'dist'
+    ```
+    {
+        "extends": "./tsconfig.json",
+        "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
+    }
+    ```
+1. tasks.json needs to run in a sub-folder
+    ```
+    {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "tsc-watch",
+                "command": "npm",
+                "args": [
+                    "run",
+                    "watch"
+                ],
+                "type": "shell",
+                "isBackground": true,
+                "group": "build",
+                "problemMatcher": "$tsc-watch",
+                "presentation": {
+                    "reveal": "always",
+                },
+                "options": {
+                    "cwd": "${workspaceRoot}/server"
+                }
+            }       
+        ]
+    }
+    ```
+1. launch.json needs to run in the server folder also
+    ```
+    {
+        "version": "0.2.0",
+        "configurations": [
+        {
+            "type": "node",
+            "request": "attach",
+            "preLaunchTask": "tsc-watch",
+            "name": "Attach to Docker 9229",
+            "port": 9229,
+            "address": "localhost",
+            "protocol": "inspector",
+            "restart": true,
+            "localRoot": "${workspaceFolder}/server/dist",
+            "remoteRoot": "/server/dist",
+            "outFiles": [
+            "${workspaceFolder}/server/dist/**/*.js"
+            ],
+            "skipFiles": [
+            "<node_internals>/**/*.js",
+            ]
+        }
+        ]
+    }
+    ```
+1. Launch the Visual Stuio Code Debugger
+
+![Launch!](images/vscode-debugger-launch.png "Launch the Visual Stuio Code Debugger")
+
+1. Set a break point in the source code
+
+![set break point](images/set-break-point.png "Set a break point in the source code")
+
+1. Use curl on the comman-line or navigate in a web browser.
+
+    - curl http://localhost:3000
+
+    - The node.js server will pause on the break-point.
+
+![break point stopped](images/break-point-stopped.png "Paused on a break point")
+
+    - You can view the call-stack history
+
+![call stack](images/paused-on-breakpoint.png "Call Stack")
+
 
 ## References
 
     References go here
+

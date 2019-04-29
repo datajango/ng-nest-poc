@@ -1,5 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import { Course } from './course';
+import { Injectable, Inject } from '@nestjs/common';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { Course } from './interfaces/course.interface';
+import { COURSE_MODEL } from '../constants';
+import { ErrorMsg } from 'src/common/ErrorMsg';
+import { SuccessMsg } from 'src/common/SuccessMsg';
+import { CreateCourseDto } from './dto/create-course.dto';
+import { UpdateCourseDto } from './dto/update-course.dto';
+
 
 /* lorem pixel categories
 abstract
@@ -17,7 +25,7 @@ technics
 transport
 */
 
-const courses: Course[] =[
+const courses: Course[] = [
     {
         id: '1',
         title: 'NestJS from Novice to Guru',
@@ -46,6 +54,74 @@ const courses: Course[] =[
 
 @Injectable()
 export class CoursesService {
+
+    constructor(@InjectModel('Course') private readonly courseModel: Model<Course>) { }
+
+    async create(createCourseDto: CreateCourseDto): Promise<Course | ErrorMsg> {
+        //let _id: number = new Types.ObjectId();
+        console.log('create', createCourseDto);
+
+        try {
+            const createdCourse = new this.courseModel(createCourseDto);
+
+            console.log('New Course', createdCourse);
+
+
+            return await createdCourse.save();
+        } catch (err) {
+            return { msg: err };
+        }
+    }
+
+    async findAll(): Promise<Course[] | ErrorMsg> {
+        try {
+            return await this.courseModel.find().exec();
+        } catch (err) {
+            return { msg: err };
+        }
+    }
+
+    // this method retrieves only one entry, by entry ID
+    async findById(id: string): Promise<Course | ErrorMsg> {
+
+        console.log(`findById ${id}`);
+
+        try {
+            let query: any = await this.courseModel.findById(id).exec();
+            return query;
+        } catch (err) {
+            return { msg: err };
+        }
+    }
+
+    async deleteAll(): Promise<SuccessMsg | ErrorMsg> {
+        try {
+            let results = await this.courseModel.deleteMany({}).exec();
+            console.log('deleteAll:', results);
+            //return await this.courseModel.find().exec();
+            return { msg: 'Success' };
+        } catch (err) {
+            return { msg: err };
+        }
+    }
+
+    async findByIdAndDelete(id: string): Promise<SuccessMsg | ErrorMsg> {
+        try {
+            let results = await this.courseModel.findByIdAndDelete(id).exec();
+            console.log('findByIdAndDelete:', results);
+            return { msg: 'Success' };
+        } catch (err) {
+            return { msg: err };
+        }
+    }
+
+    async findByIdAndUpdate(id: string, data: UpdateCourseDto): Promise<Course | ErrorMsg> {
+        try {
+            return await this.courseModel.findByIdAndUpdate(id, data).exec();
+        } catch (err) {
+            return { msg: err };
+        }
+    }
 
     getCourses(): Course[] {
         return courses;

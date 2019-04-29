@@ -1,0 +1,1 @@
+{"version":3,"file":"courses.providers.js","sourceRoot":"","sources":["../../src/courses/courses.providers.ts"],"names":[],"mappings":";;AACA,qDAAgD;AAChD,4CAA4C;AAE/B,QAAA,gBAAgB,GAAG;IAC5B;QACI,OAAO,EAAE,wBAAY;QACrB,UAAU,EAAE,CAAC,UAAsB,EAAE,EAAE,CAAC,UAAU,CAAC,KAAK,CAAC,QAAQ,EAAE,6BAAY,CAAC;QAChF,MAAM,EAAE,CAAC,qBAAqB,CAAC;KAClC;CACJ,CAAC"}
