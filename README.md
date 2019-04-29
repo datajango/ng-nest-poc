@@ -67,11 +67,12 @@ In this part a new node.js server is created that serves some static JSON data a
 
     ```
     export interface Course {
-        id: string,
-        title?: string,
-        description?: string,
-        author?: string,
-        length?: string
+        id: string;
+        title?: string;
+        description?: string;
+        author?: string;
+        length?: string;
+        category?: string;
     }
     ```
 
@@ -87,21 +88,24 @@ In this part a new node.js server is created that serves some static JSON data a
             title: 'NestJS from Novice to Guru',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet neque nec nunc mollis sagittis. Pellentesque vulputate facilisis justo, quis facilisis purus imperdiet pulvinar. Sed elementum dictum dictum. In sem mauris, vestibulum quis ligula quis, eleifend pharetra lectus. Vivamus pulvinar leo in ante hendrerit, at varius risus placerat. Fusce molestie quam id lorem facilisis, vitae tempus leo consectetur.',
             author: 'John Smith',
-            length: '4 Hour 45 Minutes'
+            length: '4 Hour 45 Minutes',
+            category: 'business'
         },
         {
             id: '2',
             title: 'Angular Material Design Essentials',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet neque nec nunc mollis sagittis. Pellentesque vulputate facilisis justo, quis facilisis purus imperdiet pulvinar. Sed elementum dictum dictum. In sem mauris, vestibulum quis ligula quis, eleifend pharetra lectus. Vivamus pulvinar leo in ante hendrerit, at varius risus placerat. Fusce molestie quam id lorem facilisis, vitae tempus leo consectetur.',
             author: 'John Smith',
-            length: '3 Hour 33 Minutes'
+            length: '3 Hour 33 Minutes',
+            category: 'people'
         },
         {
             id: '3',
             title: 'Mongodb Secrets',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet neque nec nunc mollis sagittis. Pellentesque vulputate facilisis justo, quis facilisis purus imperdiet pulvinar. Sed elementum dictum dictum. In sem mauris, vestibulum quis ligula quis, eleifend pharetra lectus. Vivamus pulvinar leo in ante hendrerit, at varius risus placerat. Fusce molestie quam id lorem facilisis, vitae tempus leo consectetur.',
             author: 'John Smith',
-            length: '4 Hour 12 Minutes'
+            length: '4 Hour 12 Minutes',
+            category: 'nightlife'
         }
     ];
 
@@ -371,7 +375,69 @@ In this part, a small Angular front-end is created using the Angular Command Lin
 
 ## Style the Courses Component using Material Design Components   
 
+![Courses in a Material Design Component Card](images/courses-card.png)
+
+    1. client\src\app\courses\components\courses\courses.component.html
+
+        ```
+        <div class="container">
+            <h1>Courses</h1>
+
+            <div
+                *ngFor="let course of courses"
+                class="courses-container"
+            >
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <div
+                            mat-card-avatar
+                            class="example-header-image"
+                        ></div>
+                        <mat-card-title>{{course.title}}</mat-card-title>
+                        <mat-card-subtitle>{{course.author}}</mat-card-subtitle>
+                        <mat-card-subtitle>{{course.length}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <img
+                        mat-card-image
+                        src="http://lorempixel.com/400/200/{{course.category}}"
+                        alt="Random Image"
+                    >
+                    <mat-card-content>
+                        <p>{{course.description}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-mini-fab>
+                            <mat-icon>favorite</mat-icon>
+                        </button>
+                        <button mat-button>LIKE</button>
+                        <button mat-mini-fab>
+                            <mat-icon>send</mat-icon>
+                        </button>
+                        <button mat-button>SHARE</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>    
+        ```
+
+    1. client\src\app\courses\components\courses\courses.component.scss
+
+    ```
+    .container {
+        margin: 30px;
+    }
+
+    .courses-container {
+        padding: 20px;
+    }
+
+    .example-card {
+    max-width: 400px;
+    }
+
+    .example-header-image {
+    background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+    background-size: cover;
+    }
     ```
     
-    ```
-
