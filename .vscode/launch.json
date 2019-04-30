@@ -5,7 +5,7 @@
       "type": "node",
       "request": "attach",
       "preLaunchTask": "tsc-watch",
-      "name": "Attach to Docker 9229",
+      "name": "Attach to 9229",
       "port": 9229,
       "address": "localhost",
       "protocol": "inspector",
@@ -18,6 +18,20 @@
       "skipFiles": [
         "<node_internals>/**/*.js",
       ]
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against localhost",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}/client"
+    },
+    {
+      "type": "chrome",
+      "request": "attach",
+      "name": "Attach to Chrome",
+      "port": 9222,
+      "webRoot": "${workspaceFolder}/client"
     }
   ]
 }

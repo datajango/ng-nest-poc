@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "b90fa603-c5f7-4fff-a6ee-ff3ba49b4898",
+		"name": "ng-nest-poc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get courses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a course",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"1\",\n    \"title\": \"NestJS from Novice to Guru\",\n    \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet neque nec nunc mollis sagittis. Pellentesque vulputate facilisis justo, quis facilisis purus imperdiet pulvinar. Sed elementum dictum dictum. In sem mauris, vestibulum quis ligula quis, eleifend pharetra lectus. Vivamus pulvinar leo in ante hendrerit, at varius risus placerat. Fusce molestie quam id lorem facilisis, vitae tempus leo consectetur.\",\n    \"author\": \"John Smith\",\n    \"length\": \"4 Hour 45 Minutes\",\n    \"category\": \"business\"\n}"
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/courses",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Blog Entry",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Postman is Awesome\",\n    \"body\": \"Donec euismod aliquam mauris sit amet fringilla. Quisque ultricies dolor augue, vitae mattis nisi fermentum at.\"\n}"
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/entries",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"entries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Blog Entries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/entries",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"entries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a Blog Entry",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/entries/1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"entries",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -9,9 +9,11 @@ The components of this POC (Proof of Concept) are a front-end  implemented using
 
 ![Block Diagram](images/block-diagram-1.png)
 
+![NestJS](images/nestJS.png)
+
 Docker and docker-composer are used to run the back-end components. the below diagram illustrates that each docker container also has a docker volume that is used to transfer files from the host machine to the running docker images. The volumes are also used to provide a place for the mongodb database files to reside.
 
-![Docker Container Diagram](images/block-diagram-2.png)
+![Docker Container Diagram](images/fully-containerized.png)
 
 ## Init Project
 
@@ -775,7 +777,7 @@ export class CoursesService {
 
     I probably made a mistake along the way, but the code works in the git repo.
 
-## Interactive Debugging
+## Node.JS Interactive Debugging
 
 1. create .vscode configs
     1. launch.json
@@ -850,7 +852,7 @@ export class CoursesService {
         ]
     }
     ```
-1. Launch the Visual Stuio Code Debugger
+1. Launch the Visual Studio Code Debugger
 
 ![Launch!](images/vscode-debugger-launch.png "Launch the Visual Stuio Code Debugger")
 
@@ -869,6 +871,38 @@ export class CoursesService {
     - You can view the call-stack history
 
 ![call stack](images/paused-on-breakpoint.png "Call Stack")
+
+## Angular Interactive Debugging
+
+    Visual Studio can do remote control debugging againt the Chrome the browser.  
+
+![Visual Studio Code Chome remote control Angular Debugging](images/chrome-debugger.png "Visual Studio Code Chome remote control Angular Debugging")
+
+
+    1. Add a configuration to .vscode/launch.json
+
+        ```
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceFolder}/client"
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "webRoot": "${workspaceFolder}/client"
+        }
+        ```
+
+    1. set a break point
+
+    1. launch "Launch Chrome against localhost"
+
+    1. Chrome will stop at a break point and display the Typescript source code.
 
 ## Unit Testing in NestJS
 
@@ -1118,11 +1152,11 @@ export class CoursesService {
 
 ## References
 
-    - [Angular](https://angular.io/)
-    - [Material Design](https://material.io/design/)
-    - [Material Design Components](https://material.angular.io/)
-    - [Angular CLI](https://cli.angular.io/)
-    - [Karma](https://karma-runner.github.io/latest/index.html)
-    - [Protractor](https://www.protractortest.org/#/)
+* [Angular](https://angular.io/)
+* [Material Design](https://material.io/design/)
+* [Material Design Components](https://material.angular.io/)
+* [Angular CLI](https://cli.angular.io/)
+* [Karma](https://karma-runner.github.io/latest/index.html)
+* [Protractor](https://www.protractortest.org/#/)
 
 
