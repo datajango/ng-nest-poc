@@ -7,6 +7,18 @@ const routes: Routes = [
     loadChildren: './courses/courses.module#CoursesModule'
   },
   {
+    path: 'customers',
+    loadChildren: './customers/customers.module#CustomersModule'
+  },
+  {
+    path: 'orders',
+    loadChildren: './orders/orders.module#OrdersModule'
+  },
+  {
+    path: 'messages',
+    loadChildren: './messages/messages.module#MessagesModule'
+  },  
+  {
     path: '',
     redirectTo: '',
     pathMatch: 'full'  

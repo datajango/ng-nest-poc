@@ -1,0 +1,33 @@
+.order-actions {
+    margin-top:20px;
+}
+
+.order-container {
+    overflow:auto;
+    height:400px;
+}
+
+
+table {
+    width:100%;
+}
+
+th.mat-sort-header-sorted {
+    color:black;
+}
+
+tr.mat-footer-row {
+    font-weight:bold;
+}
+
+.mat-table-sticky {
+    border-top:1px solid #e0e0e0;
+}
+
+tr:hover {
+    background: #f5f5f5;
+}
+
+tr:active {
+    background: #efefef;
+}

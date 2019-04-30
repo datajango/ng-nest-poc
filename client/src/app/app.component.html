@@ -1,3 +1,49 @@
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="sidenav">
+        <button color="primary" mat-button routerLink="/courses" (click)="drawer.close()">
+            <mat-icon>school</mat-icon>Courses
+        </button>
+        <button color="primary" mat-button routerLink="/customers" (click)="drawer.close()">
+            <mat-icon>group</mat-icon>Customers
+        </button>
+        <button color="primary" mat-button routerLink="/orders" (click)="drawer.close()">
+            <mat-icon>assignment</mat-icon>Orders
+        </button>
+        <button color="primary" mat-button routerLink="/messages" (click)="drawer.close()">
+            <mat-icon>markunread_mailbox</mat-icon>Messages
+        </button>
+    </mat-drawer>
 
+    <div class="sidenav-content">
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <button mat-icon-button (click)="drawer.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <span>Title</span>
+                <span class="spacer"></span>
+                <mat-icon>favorite</mat-icon>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>publish</mat-icon>
+                        <span>Share</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                        <mat-icon>mode_comment</mat-icon>
+                        <span>Comment</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                    </button>
 
-<router-outlet></router-outlet>
+                </mat-menu>
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+        <router-outlet></router-outlet>
+    </div>
+</mat-drawer-container>

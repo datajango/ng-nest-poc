@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CoursesComponent } from './courses.component';
+import { RepDialogComponent } from './rep-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdcModule } from 'src/app/mdc/mdc.module';
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
-describe('CoursesComponent', () => {
-  let component: CoursesComponent;
-  let fixture: ComponentFixture<CoursesComponent>;
+describe('RepDialogComponent', () => {
+  let component: RepDialogComponent;
+  let fixture: ComponentFixture<RepDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoursesComponent ],
-      imports: [
-        HttpClientModule,
-        BrowserAnimationsModule,
+      declarations: [ RepDialogComponent ],
+      imports: [ 
+        FormsModule,               
         MdcModule
       ],
     })
@@ -22,7 +22,7 @@ describe('CoursesComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CoursesComponent);
+    fixture = TestBed.createComponent(RepDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

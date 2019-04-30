@@ -870,8 +870,259 @@ export class CoursesService {
 
 ![call stack](images/paused-on-breakpoint.png "Call Stack")
 
+## Unit Testing in NestJS
+
+    1. cd server
+
+    1. create a new module
+
+        ```
+        nest g module blog --dry-run
+        nest g module blog
+        nest g service blog/entry --dry-run
+        nest g controller blog/entry --dry-run
+        nest g service blog/entry
+        nest g controller blog/entry
+        ```
+
+    1. run unit tests
+
+        ```
+        npm test
+        ```
+
+    1. server\src\blog\entry\entry.controller.ts
+
+        ```
+        import { Controller, Get, Param, Post, Body } from '@nestjs/common';
+        import { Entry } from './Entry';
+        import { EntryService } from './entry.service';
+
+        @Controller('entries')
+        export class EntryController {
+
+            constructor(private readonly entryService: EntryService) { }
+
+            @Get()
+            findAll(): Entry[] {
+                const entries: Entry[] = this.entryService.findAll();
+                //const entries: Entry[] = [];
+                return entries;
+            }
+
+            @Get(':entryId')
+            findById(@Param('entryId') entryId) {
+                return this.entryService.findById(entryId);
+            }
+            @Post()
+            create(@Body() entry) {
+                return this.entryService.create(entry);
+            }
+        }
+        ```    
+        
+    1. server\src\blog\entry\entry.service.ts
+
+        ```
+        import { Injectable } from '@nestjs/common';
+        import { Entry } from './Entry';
+        import { stringify } from 'querystring';
+
+        let entries: Entry[] = [
+            {
+                _id: '1',
+                title: 'Praesent ante massa',
+                body: 'Praesent ante massa, vulputate placerat mauris non, lobortis euismod dui.'
+            },
+            {
+                _id: '2',
+                title: 'Sed a magna ',
+                body: 'Sed a magna id sem suscipit semper. Duis ut fringilla nunc. '
+            },
+            {
+                _id: '3',
+                title: 'Aenean malesuada lorem',
+                body: 'Aenean malesuada lorem quis nunc tincidunt, ut vehicula nunc tempus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.'
+            },
+            {
+                _id: '4',
+                title: 'Donec euismod aliquam',
+                body: 'Donec euismod aliquam mauris sit amet fringilla. Quisque ultricies dolor augue, vitae mattis nisi fermentum at. '
+            }
+        ];
+
+
+        @Injectable()
+        export class EntryService {
+
+            // this method retrieves all entries
+            findAll() {
+                return entries;
+            }
+            
+            // this method retrieves only one entry, by entry ID
+            findById(id: string) {
+
+                function search(id){
+                    for (let index=0; index < entries.length; index++) {
+                        if (entries[index]._id === id) {
+                            return index;
+                        }
+                    }
+                    return -1;
+                }
+
+                const index = search(id);
+
+                if (index>-1) {
+                    return entries[index];
+                } else  {
+                    return null;
+                }
+            }
+
+            create(entry: Entry) {        
+                const newId = entries.length + 1;
+                
+                const newEntry = {
+                    _id: newId.toString(),
+                    title: entry.title,
+                    body: entry.body
+                }
+                
+                entries.push(newEntry);
+
+                return newEntry;
+            }
+        }
+
+        ```
+
+    1. server\src\blog\entry\Entry.ts
+
+        ```
+        export interface Entry {
+            readonly _id: string;
+            readonly title: string;
+            readonly body: string;    
+        }
+
+
+        ```
+
+    1. server\src\blog\blog.module.ts
+
+        ```
+        import { Module } from '@nestjs/common';
+        import { EntryService } from './entry/entry.service';
+        import { EntryController } from './entry/entry.controller';
+
+
+        @Module({
+        providers: [EntryService],
+        controllers: [EntryController]
+        })
+        export class BlogModule {}
+
+        ```
+
+    1. server\src\blog\entry\entry.controller.spec.ts
+
+        ```
+        import { Test, TestingModule } from '@nestjs/testing';
+        import { EntryController } from './entry.controller';
+        import { EntryService } from './entry.service';
+        import { Entry } from './Entry';
+
+        describe('Entry Controller', () => {
+        let entriesController: EntryController;
+        let entriesSrv: EntryService;
+
+        beforeEach(async () => {
+            entriesSrv = new EntryService();
+            entriesController = new EntryController(entriesSrv);
+        });
+
+        it('should be defined', () => {
+            expect(entriesController).toBeDefined();
+        });
+
+        it('should return an array of blog entries', async () => {
+            
+            const result: Entry[] =   [{
+            _id: '1',
+            title: 'Praesent ante massa',
+            body: 'Praesent ante massa, vulputate placerat mauris non, lobortis euismod dui.'
+            }];
+
+            jest.spyOn(entriesSrv, 'findAll').mockImplementation(() => result);
+
+            expect(await entriesController.findAll()).toBe(result);
+        });
+
+        });
+
+        ```
+
+## E2e Testing in NestJS
+
+    1. cd server
+
+    1. server\test\blog.e2e-spec.ts
+
+        ```
+        import * as request from 'supertest';
+        import { Test } from '@nestjs/testing';
+        import { BlogModule } from '../src/blog/blog.module';
+        import { EntryService } from '../src/blog/entry/entry.service';
+        import { INestApplication } from '@nestjs/common';
+
+        describe('Blog', () => {
+        let app: INestApplication;
+        let entriesService = { findAll: () => ['test'] };
+
+        beforeAll(async () => {
+            const module = await Test.createTestingModule({
+            imports: [BlogModule],
+            })
+            .overrideProvider(EntryService)
+            .useValue(entriesService)
+            .compile();
+
+            app = module.createNestApplication();
+            await app.init();
+        });
+
+        it(`/GET entries`, () => {
+            return request(app.getHttpServer())
+            .get('/entries')
+            .expect(200)
+            .expect(entriesService.findAll());
+        });
+
+        afterAll(async () => {
+            await app.close();
+        });
+        });
+        ```
+
+    1. npm run test:e2e
+
+
+## Unit Testing in Angular
+
+    1. cd client
+
+    1. npm run e2e
+
 
 ## References
 
-    References go here
+    - [Angular](https://angular.io/)
+    - [Material Design](https://material.io/design/)
+    - [Material Design Components](https://material.angular.io/)
+    - [Angular CLI](https://cli.angular.io/)
+    - [Karma](https://karma-runner.github.io/latest/index.html)
+    - [Protractor](https://www.protractortest.org/#/)
+
 

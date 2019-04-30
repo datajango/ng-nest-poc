@@ -9,9 +9,11 @@ import { CoursesService } from '../../services/courses.service';
 })
 export class CoursesComponent implements OnInit {
   courses = [];
+  hidden = false;
+  clickCount = 0;
 
   constructor(private webService: CoursesService) { 
-   
+    console.log('hidden:' + this.hidden);
   }
 
   ngOnInit() {    
@@ -20,4 +22,8 @@ export class CoursesComponent implements OnInit {
     });
   }
 
+  onClick() {
+    this.hidden = !this.hidden;
+    this.clickCount += 1;    
+  }
 }

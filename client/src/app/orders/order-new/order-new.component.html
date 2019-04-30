@@ -1,0 +1,53 @@
+<mat-card>
+    <mat-card-title>Date picker</mat-card-title>
+    <mat-card-content>
+        <mat-form-field>
+            <input
+                matInput
+                placeholder="Simple Date"
+                [matDatepicker]="simpleDate"
+            >
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="simpleDate"
+            >
+            </mat-datepicker-toggle>
+            <mat-datepicker #simpleDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <input
+                matInput
+                placeholder="Filtered Date"
+                [min]="minDate"
+                [matDatepicker]="dateFilter"
+            >
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="dateFilter"
+            >
+            </mat-datepicker-toggle>
+            <mat-datepicker #dateFilter></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <input
+                matInput
+                placeholder="Valid Date"
+                [min]="minDate"
+                [matDatepicker]="dateValid"
+                [formControl]="dateCtrl"
+            >
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="dateValid"
+            >
+            </mat-datepicker-toggle>
+            <mat-datepicker #dateValid></mat-datepicker>
+            <mat-error
+                align="end"
+                *ngIf="dateCtrl.hasError('required')"
+            >
+                A valid date mm/dd/yyyy is required
+            </mat-error>
+        </mat-form-field>
+    </mat-card-content>
+</mat-card>

@@ -1,6 +1,8 @@
 <div class="container">
-    <h1>Courses</h1>
-
+    <h1 id="courseTitle" >Courses</h1>
+    <button id="testButton" mat-raised-button color="primary" (click)="onClick()">Test</button>
+    <div id="testText" *ngIf="hidden==true">Hello</div>
+    <div id="testCount">{{clickCount}}</div>
     <div
         *ngFor="let course of courses"
         class="courses-container"

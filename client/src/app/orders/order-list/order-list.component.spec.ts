@@ -1,19 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CoursesComponent } from './courses.component';
+import { OrderListComponent } from './order-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdcModule } from 'src/app/mdc/mdc.module';
-import { HttpClientModule } from '@angular/common/http';
 
-describe('CoursesComponent', () => {
-  let component: CoursesComponent;
-  let fixture: ComponentFixture<CoursesComponent>;
+describe('OrderListComponent', () => {
+  let component: OrderListComponent;
+  let fixture: ComponentFixture<OrderListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoursesComponent ],
+      declarations: [ OrderListComponent ],
       imports: [
-        HttpClientModule,
         BrowserAnimationsModule,
         MdcModule
       ],
@@ -22,7 +20,7 @@ describe('CoursesComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CoursesComponent);
+    fixture = TestBed.createComponent(OrderListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
