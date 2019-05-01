@@ -900,6 +900,8 @@ export class CoursesService {
 
     1. set a break point
 
+    1. npm start
+    
     1. launch "Launch Chrome against localhost"
 
     1. Chrome will stop at a break point and display the Typescript source code.
