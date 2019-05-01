@@ -9,7 +9,7 @@ The components of this POC (Proof of Concept) are a front-end  implemented using
 
 ![Block Diagram](images/block-diagram-1.png)
 
-![NestJS](images/nestJS.png)
+![NestJS](images/nestjs-diagram.png)
 
 Docker and docker-composer are used to run the back-end components. the below diagram illustrates that each docker container also has a docker volume that is used to transfer files from the host machine to the running docker images. The volumes are also used to provide a place for the mongodb database files to reside.
 
@@ -901,7 +901,7 @@ export class CoursesService {
     1. set a break point
 
     1. npm start
-    
+
     1. launch "Launch Chrome against localhost"
 
     1. Chrome will stop at a break point and display the Typescript source code.
